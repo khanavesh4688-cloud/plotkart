@@ -43,7 +43,7 @@ function PropertyPage() {
         <div className="md:col-span-2 md:row-span-2 relative aspect-[4/3] md:aspect-auto">
           <img src={p.image} alt={p.title} className="size-full object-cover" width={1600} height={1200} />
         </div>
-        {p.gallery.slice(0, 4).map((g, i) => (
+        {p.gallery.slice(0, 4).map((g: string, i: number) => (
           <div key={i} className="hidden md:block relative aspect-square">
             <img src={g} alt="" className="size-full object-cover" loading="lazy" />
           </div>
@@ -105,7 +105,7 @@ function PropertyPage() {
 
           <h3 className="font-semibold mt-8 mb-3">Amenities</h3>
           <div className="flex flex-wrap gap-2">
-            {p.amenities.map((a) => <Badge key={a}>{a}</Badge>)}
+            {p.amenities.map((a: string) => <Badge key={a}>{a}</Badge>)}
           </div>
 
           {/* Map placeholder */}
