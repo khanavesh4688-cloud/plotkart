@@ -1,7 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PROPERTIES, currency } from "@/lib/data";
 import { PropertyCard } from "@/components/property-card";
-import { MapPin, ShieldCheck, Phone, MessageCircle, Calendar, Heart, Share2, Droplets, Zap, Route as RoadIcon, FileCheck, Sparkles, TrendingUp, Calculator } from "lucide-react";
+import { useState } from "react";
+import { MapPin, ShieldCheck, Phone, MessageCircle, Calendar, Heart, Share2, Droplets, Zap, Route as RoadIcon, FileCheck, Sparkles, TrendingUp, Calculator, Camera, Compass, Video, Play } from "lucide-react";
 
 export const Route = createFileRoute("/property/$id")({
   loader: ({ params }) => {
