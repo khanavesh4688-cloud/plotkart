@@ -1,6 +1,20 @@
 import { Link } from "@tanstack/react-router";
-import { Search, MapPin, Heart, User, Sparkles, PlusCircle, Menu } from "lucide-react";
+import { Search, Heart, User, Sparkles, PlusCircle, Menu, ShieldCheck } from "lucide-react";
 import { useState } from "react";
+import logoAsset from "@/assets/plotkart-logo.png.asset.json";
+
+export function Logo({ size = 36, className = "" }: { size?: number; className?: string }) {
+  return (
+    <img
+      src={logoAsset.url}
+      alt="PlotKart"
+      width={size}
+      height={size}
+      className={`shrink-0 ${className}`}
+      style={{ width: size, height: size, objectFit: "contain" }}
+    />
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -9,11 +23,9 @@ export function Header() {
       <div className="glass border-b border-border/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center gap-3">
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="size-9 rounded-xl bg-primary grid place-items-center shadow-glow">
-              <MapPin className="size-5 text-primary-foreground" />
-            </div>
+            <Logo size={38} />
             <div className="leading-none">
-              <div className="font-display text-xl">Terra</div>
+              <div className="font-display text-xl">PlotKart</div>
               <div className="text-[10px] tracking-widest text-muted-foreground uppercase">Land Marketplace</div>
             </div>
           </Link>
@@ -29,6 +41,9 @@ export function Header() {
 
           <nav className="hidden md:flex items-center gap-1 text-sm">
             <Link to="/browse" className="px-3 py-2 rounded-full hover:bg-secondary transition">Browse</Link>
+            <Link to="/verify" className="px-3 py-2 rounded-full hover:bg-secondary transition flex items-center gap-1.5">
+              <ShieldCheck className="size-3.5" /> Verify
+            </Link>
             <Link to="/ai" className="px-3 py-2 rounded-full hover:bg-secondary transition flex items-center gap-1.5">
               <Sparkles className="size-3.5" /> AI
             </Link>
@@ -40,7 +55,7 @@ export function Header() {
             </Link>
           </nav>
 
-          <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-full hover:bg-secondary">
+          <button onClick={() => setOpen(!open)} className="md:hidden p-2 rounded-full hover:bg-secondary" aria-label="Menu">
             <Menu className="size-5" />
           </button>
         </div>
@@ -48,6 +63,7 @@ export function Header() {
         {open && (
           <div className="md:hidden border-t border-border px-4 py-3 flex flex-col gap-1 text-sm bg-background/95">
             <Link to="/browse" onClick={() => setOpen(false)} className="px-3 py-2 rounded-lg hover:bg-secondary">Browse</Link>
+            <Link to="/verify" onClick={() => setOpen(false)} className="px-3 py-2 rounded-lg hover:bg-secondary">Government Verification</Link>
             <Link to="/ai" onClick={() => setOpen(false)} className="px-3 py-2 rounded-lg hover:bg-secondary">AI Assistant</Link>
             <Link to="/dashboard" onClick={() => setOpen(false)} className="px-3 py-2 rounded-lg hover:bg-secondary">Seller Dashboard</Link>
             <Link to="/wishlist" onClick={() => setOpen(false)} className="px-3 py-2 rounded-lg hover:bg-secondary">Wishlist</Link>
@@ -67,14 +83,18 @@ export function Footer() {
     <footer className="mt-24 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 py-12 grid gap-8 md:grid-cols-4 text-sm">
         <div>
-          <div className="font-display text-2xl mb-2">Terra</div>
-          <p className="text-muted-foreground">The premium marketplace for land. Verified plots, transparent pricing, AI-guided decisions.</p>
+          <div className="flex items-center gap-2 mb-3">
+            <Logo size={32} />
+            <div className="font-display text-2xl">PlotKart</div>
+          </div>
+          <p className="text-muted-foreground">India's premium marketplace for land. Government-verified plots, transparent pricing, AI-guided decisions.</p>
         </div>
         <div>
           <div className="font-semibold mb-3">Explore</div>
           <ul className="space-y-2 text-muted-foreground">
             <li><Link to="/browse">All Listings</Link></li>
             <li><Link to="/ai">AI Valuation</Link></li>
+            <li><Link to="/verify">Government Verification</Link></li>
             <li><Link to="/post">Sell Your Land</Link></li>
           </ul>
         </div>
@@ -92,7 +112,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-border py-5 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Terra Land Marketplace. Crafted with care.
+        © {new Date().getFullYear()} PlotKart. Crafted with care in India.
       </div>
     </footer>
   );

@@ -3,7 +3,7 @@ import { Sparkles, Send, TrendingUp, ShieldCheck, Calculator, MapPin } from "luc
 import { useState } from "react";
 
 export const Route = createFileRoute("/ai")({
-  head: () => ({ meta: [{ title: "AI Assistant — Terra" }] }),
+  head: () => ({ meta: [{ title: "AI Assistant — PlotKart" }] }),
   component: AI,
 });
 
@@ -16,7 +16,7 @@ const SUGGESTIONS = [
 
 export function AI() {
   const [messages, setMessages] = useState<{ role: "user" | "ai"; text: string }[]>([
-    { role: "ai", text: "Hi! I'm Terra AI. Ask me about pricing, locations, documents, or investment potential — I'll analyze 50,000+ recent transactions to help you decide." },
+    { role: "ai", text: "Hi! I'm PlotKart AI. Ask me about pricing, locations, documents, or investment potential — I'll analyze 50,000+ recent transactions to help you decide." },
   ]);
   const [input, setInput] = useState("");
 
@@ -30,7 +30,7 @@ export function AI() {
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
       <div className="mb-8 text-center">
         <div className="inline-flex items-center gap-2 glass rounded-full px-3 py-1.5 text-xs mb-3">
-          <Sparkles className="size-3.5 text-primary"/> Terra AI · Powered by Lovable AI
+          <Sparkles className="size-3.5 text-primary"/> PlotKart AI · Powered by Lovable AI
         </div>
         <h1 className="font-display text-5xl">Your land intelligence engine</h1>
         <p className="text-muted-foreground mt-2 max-w-xl mx-auto">Valuation, fraud detection, market trends, and buyer recommendations — in one conversation.</p>

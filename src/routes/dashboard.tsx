@@ -3,7 +3,7 @@ import { PROPERTIES, currency } from "@/lib/data";
 import { Eye, Heart, MessageCircle, Plus, TrendingUp, Users, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard")({
-  head: () => ({ meta: [{ title: "Seller Dashboard — Terra" }] }),
+  head: () => ({ meta: [{ title: "Seller Dashboard — PlotKart" }] }),
   component: Dashboard,
 });
 
