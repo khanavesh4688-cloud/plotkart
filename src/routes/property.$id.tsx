@@ -12,13 +12,13 @@ export const Route = createFileRoute("/property/$id")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.property.title} — Terra` },
+          { title: `${loaderData.property.title} — PlotKart` },
           { name: "description", content: loaderData.property.description },
           { property: "og:title", content: loaderData.property.title },
           { property: "og:description", content: loaderData.property.description },
           { property: "og:image", content: loaderData.property.image },
         ]
-      : [{ title: "Property — Terra" }],
+      : [{ title: "Property — PlotKart" }],
   }),
   component: PropertyPage,
   notFoundComponent: () => (
@@ -79,7 +79,7 @@ function PropertyPage() {
             <div className="relative flex items-start gap-4">
               <div className="size-11 rounded-2xl bg-white/15 grid place-items-center shrink-0"><Sparkles className="size-5"/></div>
               <div className="flex-1">
-                <div className="text-xs uppercase tracking-widest opacity-80">Terra AI Valuation</div>
+                <div className="text-xs uppercase tracking-widest opacity-80">PlotKart AI Valuation</div>
                 <div className="font-display text-3xl mt-1">Fair price: {currency(Math.round(p.price * 0.98))} – {currency(Math.round(p.price * 1.08))}</div>
                 <p className="text-sm opacity-90 mt-2">This listing is priced within fair range. Expected 12-month appreciation: <b>+{Math.round(p.aiScore/8)}%</b> based on infrastructure, comparables, and demand.</p>
                 <div className="mt-4 flex flex-wrap gap-2">
