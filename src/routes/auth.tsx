@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Mail, Lock, Phone, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/auth")({
-  head: () => ({ meta: [{ title: "Sign in — Terra" }] }),
+  head: () => ({ meta: [{ title: "Sign in — PlotKart" }] }),
   component: Auth,
 });
 
@@ -37,7 +37,7 @@ function Auth() {
         </form>
 
         <div className="text-center text-sm text-muted-foreground mt-5">
-          {mode === "signin" ? "New to Terra?" : "Already have an account?"}{" "}
+          {mode === "signin" ? "New to PlotKart?" : "Already have an account?"}{" "}
           <button className="text-primary font-medium" onClick={() => setMode(mode === "signin" ? "signup" : "signin")}>
             {mode === "signin" ? "Create account" : "Sign in"}
           </button>

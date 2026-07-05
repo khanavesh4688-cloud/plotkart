@@ -95,7 +95,7 @@ function Index() {
           <div className="relative grid md:grid-cols-2 gap-8 items-center text-primary-foreground">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs mb-4">
-                <Sparkles className="size-3.5" /> Terra AI
+                <Sparkles className="size-3.5" /> PlotKart AI
               </div>
               <h2 className="font-display text-4xl md:text-5xl leading-tight">Know what your land is really worth.</h2>
               <p className="mt-4 opacity-90 max-w-lg">Our AI benchmarks against 50,000+ recent transactions, road connectivity, upcoming infrastructure, and soil data to give you a fair valuation in seconds.</p>

@@ -12,7 +12,7 @@ export const Route = createFileRoute("/browse")({
   }),
   head: () => ({
     meta: [
-      { title: "Browse Land — Terra" },
+      { title: "Browse Land — PlotKart" },
       { name: "description", content: "Filter and browse verified land plots by category, location, budget, and amenities." },
     ],
   }),

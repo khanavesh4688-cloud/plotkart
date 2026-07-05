@@ -4,7 +4,7 @@ import { PropertyCard } from "@/components/property-card";
 import { Heart } from "lucide-react";
 
 export const Route = createFileRoute("/wishlist")({
-  head: () => ({ meta: [{ title: "Wishlist — Terra" }] }),
+  head: () => ({ meta: [{ title: "Wishlist — PlotKart" }] }),
   component: Wishlist,
 });
 
