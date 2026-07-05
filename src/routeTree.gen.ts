@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
+import { Route as VerifyRouteImport } from './routes/verify'
 import { Route as PostRouteImport } from './routes/post'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as BrowseRouteImport } from './routes/browse'
@@ -21,6 +22,11 @@ import { Route as PropertyIdRouteImport } from './routes/property.$id'
 const WishlistRoute = WishlistRouteImport.update({
   id: '/wishlist',
   path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerifyRoute = VerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostRoute = PostRouteImport.update({
@@ -66,6 +72,7 @@ export interface FileRoutesByFullPath {
   '/browse': typeof BrowseRoute
   '/dashboard': typeof DashboardRoute
   '/post': typeof PostRoute
+  '/verify': typeof VerifyRoute
   '/wishlist': typeof WishlistRoute
   '/property/$id': typeof PropertyIdRoute
 }
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/browse': typeof BrowseRoute
   '/dashboard': typeof DashboardRoute
   '/post': typeof PostRoute
+  '/verify': typeof VerifyRoute
   '/wishlist': typeof WishlistRoute
   '/property/$id': typeof PropertyIdRoute
 }
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/browse': typeof BrowseRoute
   '/dashboard': typeof DashboardRoute
   '/post': typeof PostRoute
+  '/verify': typeof VerifyRoute
   '/wishlist': typeof WishlistRoute
   '/property/$id': typeof PropertyIdRoute
 }
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/browse'
     | '/dashboard'
     | '/post'
+    | '/verify'
     | '/wishlist'
     | '/property/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/browse'
     | '/dashboard'
     | '/post'
+    | '/verify'
     | '/wishlist'
     | '/property/$id'
   id:
@@ -119,6 +130,7 @@ export interface FileRouteTypes {
     | '/browse'
     | '/dashboard'
     | '/post'
+    | '/verify'
     | '/wishlist'
     | '/property/$id'
   fileRoutesById: FileRoutesById
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   BrowseRoute: typeof BrowseRoute
   DashboardRoute: typeof DashboardRoute
   PostRoute: typeof PostRoute
+  VerifyRoute: typeof VerifyRoute
   WishlistRoute: typeof WishlistRoute
   PropertyIdRoute: typeof PropertyIdRoute
 }
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/wishlist'
       fullPath: '/wishlist'
       preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verify': {
+      id: '/verify'
+      path: '/verify'
+      fullPath: '/verify'
+      preLoaderRoute: typeof VerifyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/post': {
@@ -202,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   BrowseRoute: BrowseRoute,
   DashboardRoute: DashboardRoute,
   PostRoute: PostRoute,
+  VerifyRoute: VerifyRoute,
   WishlistRoute: WishlistRoute,
   PropertyIdRoute: PropertyIdRoute,
 }
