@@ -36,20 +36,65 @@ function PropertyPage() {
   const { property: p } = Route.useLoaderData();
   const similar = PROPERTIES.filter((x) => x.id !== p.id && x.category === p.category).slice(0, 3);
   const monthlyEmi = Math.round((p.price * 100000 * 0.8 * 0.009 * Math.pow(1.009, 240)) / (Math.pow(1.009, 240) - 1));
+  const [media, setMedia] = useState<"photos" | "tour360" | "drone">("photos");
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6">
-      {/* gallery */}
-      <div className="grid md:grid-cols-4 gap-2 rounded-3xl overflow-hidden">
-        <div className="md:col-span-2 md:row-span-2 relative aspect-[4/3] md:aspect-auto">
-          <img src={p.image} alt={p.title} className="size-full object-cover" width={1600} height={1200} />
-        </div>
-        {p.gallery.slice(0, 4).map((g: string, i: number) => (
-          <div key={i} className="hidden md:block relative aspect-square">
-            <img src={g} alt="" className="size-full object-cover" loading="lazy" />
-          </div>
-        ))}
+      {/* media tabs */}
+      <div className="flex items-center gap-2 mb-3">
+        <MediaTab active={media === "photos"} onClick={() => setMedia("photos")} icon={<Camera className="size-4"/>} label="Photos" count={p.gallery.length + 1}/>
+        <MediaTab active={media === "tour360"} onClick={() => setMedia("tour360")} icon={<Compass className="size-4"/>} label="360° Tour" badge="Immersive"/>
+        <MediaTab active={media === "drone"} onClick={() => setMedia("drone")} icon={<Video className="size-4"/>} label="Drone Video" badge="4K"/>
       </div>
+
+      {/* gallery */}
+      {media === "photos" && (
+        <div className="grid md:grid-cols-4 gap-2 rounded-3xl overflow-hidden">
+          <div className="md:col-span-2 md:row-span-2 relative aspect-[4/3] md:aspect-auto">
+            <img src={p.image} alt={p.title} className="size-full object-cover" width={1600} height={1200} />
+          </div>
+          {p.gallery.slice(0, 4).map((g: string, i: number) => (
+            <div key={i} className="hidden md:block relative aspect-square">
+              <img src={g} alt="" className="size-full object-cover" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {media === "tour360" && (
+        <div className="relative rounded-3xl overflow-hidden aspect-[16/9] bg-gradient-to-br from-primary/30 via-earth/20 to-accent">
+          <img src={p.image} alt="" className="absolute inset-0 size-full object-cover opacity-70 animate-slow-pan" />
+          <div className="absolute inset-0 grid place-items-center">
+            <div className="text-center text-white">
+              <div className="mx-auto size-20 rounded-full glass grid place-items-center mb-4 animate-float">
+                <Compass className="size-10 text-white" />
+              </div>
+              <div className="font-display text-3xl md:text-4xl drop-shadow">360° Virtual Tour</div>
+              <p className="mt-2 text-sm md:text-base opacity-90 max-w-md mx-auto drop-shadow">Walk the perimeter, view every corner, and inspect boundaries from anywhere.</p>
+              <button className="mt-5 inline-flex items-center gap-2 rounded-full bg-white text-primary font-semibold px-6 py-3 hover:bg-white/90">
+                <Play className="size-4"/> Launch 360° tour
+              </button>
+            </div>
+          </div>
+          <div className="absolute bottom-3 left-3 glass rounded-full px-3 py-1.5 text-xs text-white">Drag to look around · Scroll to zoom</div>
+        </div>
+      )}
+
+      {media === "drone" && (
+        <div className="relative rounded-3xl overflow-hidden aspect-[16/9] bg-black">
+          <img src={p.image} alt="" className="absolute inset-0 size-full object-cover opacity-60"/>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40"/>
+          <div className="absolute inset-0 grid place-items-center">
+            <button className="size-20 rounded-full bg-white text-primary grid place-items-center hover:scale-105 transition shadow-2xl">
+              <Play className="size-8 ml-1" fill="currentColor"/>
+            </button>
+          </div>
+          <div className="absolute top-3 left-3 glass rounded-full px-3 py-1.5 text-xs text-white inline-flex items-center gap-1.5">
+            <Video className="size-3"/> Drone footage · 4K · 1:24
+          </div>
+          <div className="absolute bottom-3 right-3 glass rounded-full px-3 py-1.5 text-xs text-white">Captured Jun 2026</div>
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-[1fr_380px] gap-8 mt-8">
         <div>
