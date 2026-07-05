@@ -261,3 +261,13 @@ function Spec({ icon, label, value }: { icon: React.ReactNode; label: string; va
 function IconBtn({ children }: { children: React.ReactNode }) {
   return <button className="h-10 rounded-full border border-border hover:bg-secondary grid place-items-center">{children}</button>;
 }
+function MediaTab({ active, onClick, icon, label, count, badge }: { active: boolean; onClick: () => void; icon: React.ReactNode; label: string; count?: number; badge?: string }) {
+  return (
+    <button onClick={onClick}
+      className={`inline-flex items-center gap-2 h-10 px-4 rounded-full text-sm font-medium transition ${active ? "bg-primary text-primary-foreground shadow-glow" : "bg-secondary hover:bg-secondary/70 text-foreground"}`}>
+      {icon} {label}
+      {count !== undefined && <span className={`text-[10px] rounded-full px-1.5 py-0.5 ${active ? "bg-white/20" : "bg-background"}`}>{count}</span>}
+      {badge && <span className={`text-[10px] uppercase tracking-wider rounded-full px-1.5 py-0.5 ${active ? "bg-white/20" : "bg-gold/20 text-earth"}`}>{badge}</span>}
+    </button>
+  );
+}
