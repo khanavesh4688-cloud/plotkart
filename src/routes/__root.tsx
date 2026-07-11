@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header, Footer } from "@/components/site-chrome";
+import { MobileNav } from "@/components/mobile-nav";
 
 function NotFoundComponent() {
   return (
@@ -90,10 +91,11 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col pb-16 md:pb-0">
         <Header />
         <main className="flex-1"><Outlet /></main>
         <Footer />
+        <MobileNav />
       </div>
     </QueryClientProvider>
   );
