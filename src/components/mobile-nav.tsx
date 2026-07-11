@@ -19,7 +19,7 @@ export function MobileNav() {
           const active = pathname === to;
           if (primary) {
             return (
-              <Link key={to} to={to} className="relative grid place-items-center">
+              <Link key={to} to={to as any} className="relative grid place-items-center">
                 <span className={`-mt-6 size-14 rounded-full grid place-items-center shadow-glow ${active ? "bg-primary text-primary-foreground" : "bg-primary text-primary-foreground"}`}>
                   <Icon className="size-6"/>
                 </span>
@@ -28,7 +28,7 @@ export function MobileNav() {
             );
           }
           return (
-            <Link key={to} to={to} className={`grid place-items-center gap-0.5 text-[11px] ${active ? "text-primary" : "text-muted-foreground"}`}>
+            <Link key={to} to={to as any} className={`grid place-items-center gap-0.5 text-[11px] ${active ? "text-primary" : "text-muted-foreground"}`}>
               <Icon className={`size-5 ${active ? "text-primary" : ""}`}/>
               <span>{label}</span>
             </Link>

@@ -3,6 +3,7 @@ import { PROPERTIES, currency } from "@/lib/data";
 import { PropertyCard } from "@/components/property-card";
 import { useState } from "react";
 import { MapPin, ShieldCheck, Phone, MessageCircle, Calendar, Heart, Share2, Droplets, Zap, Route as RoadIcon, FileCheck, Sparkles, TrendingUp, Calculator, Camera, Compass, Video, Play } from "lucide-react";
+import { GoogleMapView } from "@/components/google-map";
 
 export const Route = createFileRoute("/property/$id")({
   loader: ({ params }) => {
@@ -154,21 +155,16 @@ function PropertyPage() {
             {p.amenities.map((a: string) => <Badge key={a}>{a}</Badge>)}
           </div>
 
-          {/* Map placeholder */}
+          {/* Google Map */}
           <h3 className="font-semibold mt-10 mb-3">Location & surroundings</h3>
-          <div className="relative rounded-3xl overflow-hidden aspect-[16/9] border border-border">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent to-earth/10" />
-            <svg className="absolute inset-0 size-full opacity-40" viewBox="0 0 800 400">
-              <path d="M0,200 Q200,100 400,220 T800,180" stroke="currentColor" strokeWidth="2" fill="none" className="text-primary"/>
-              <path d="M0,280 Q300,240 500,300 T800,260" stroke="currentColor" strokeWidth="1.5" fill="none" className="text-earth"/>
-            </svg>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-float">
-              <div className="size-14 rounded-full bg-primary text-primary-foreground grid place-items-center shadow-glow">
-                <MapPin className="size-6"/>
-              </div>
-              <div className="mt-2 text-xs text-center font-medium">{p.location.village}</div>
-            </div>
-            <div className="absolute bottom-3 left-3 glass rounded-xl px-3 py-2 text-xs">
+          <div className="relative rounded-3xl overflow-hidden aspect-[16/10] md:aspect-[16/9] border border-border">
+            <GoogleMapView
+              center={{ lat: p.gps.lat, lng: p.gps.lng }}
+              zoom={14}
+              mapType="hybrid"
+              markers={[{ lat: p.gps.lat, lng: p.gps.lng, label: `₹${p.price}L` }]}
+            />
+            <div className="absolute bottom-3 left-3 glass rounded-xl px-3 py-2 text-xs pointer-events-none">
               GPS: {p.gps.lat.toFixed(4)}, {p.gps.lng.toFixed(4)}
             </div>
           </div>
