@@ -1,13 +1,14 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Home, Search, MapPin, Heart, User } from "lucide-react";
 
-const items = [
+type NavItem = { to: string; label: string; icon: typeof Home; primary?: boolean };
+const items: NavItem[] = [
   { to: "/", label: "Home", icon: Home },
   { to: "/browse", label: "Search", icon: Search },
   { to: "/map", label: "Explore", icon: MapPin, primary: true },
   { to: "/wishlist", label: "Saved", icon: Heart },
   { to: "/auth", label: "Profile", icon: User },
-] as const;
+];
 
 export function MobileNav() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
