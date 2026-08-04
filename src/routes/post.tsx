@@ -168,12 +168,25 @@ function Post() {
                 onBlur={() => setTouched((t) => ({...t, village: true}))}
                 placeholder="Bettakote" error={showErr("village") ? errors.village : undefined} />
             </div>
-            <div className="rounded-2xl border border-dashed border-border p-6 text-center">
-              <MapPin className="size-6 mx-auto text-primary"/>
-              <div className="mt-2 font-medium">Pin your plot on the map</div>
-              <div className="text-xs text-muted-foreground mt-1">Draw boundaries or drop a pin — buyers love accurate location.</div>
-              <button className="mt-3 rounded-full border border-border px-4 py-2 text-sm hover:bg-secondary">Open map</button>
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <MapPin className="size-4 text-primary" />
+                <div className="font-medium text-sm">Mark your plot boundary</div>
+              </div>
+              <BoundaryDrawer
+                path={boundary}
+                onChange={setBoundary}
+                onAreaChange={(a) => { if (a > 0) set("area", a.toFixed(2)); }}
+              />
+              {boundary.length >= 3 ? (
+                <div className="text-[11px] text-verified mt-2 ml-1 inline-flex items-center gap-1">
+                  <Check className="size-3" /> Boundary marked with {boundary.length} points — area auto-filled
+                </div>
+              ) : (
+                <div className="text-[11px] text-muted-foreground mt-2 ml-1">Optional, but listings with a drawn boundary get 3× more enquiries.</div>
+              )}
             </div>
+
           </>
         )}
 
