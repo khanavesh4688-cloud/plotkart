@@ -1,7 +1,9 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { CATEGORIES } from "@/lib/data";
+import { BoundaryDrawer } from "@/components/boundary-drawer";
 import { Upload, MapPin, Sparkles, Check, ShieldCheck, AlertCircle } from "lucide-react";
 import { useMemo, useState } from "react";
+
 
 export const Route = createFileRoute("/post")({
   head: () => ({ meta: [{ title: "Post a listing — PlotKart" }] }),
