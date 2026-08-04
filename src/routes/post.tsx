@@ -33,7 +33,9 @@ function Post() {
     mediaCount: 0, docsUploaded: false,
   });
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [boundary, setBoundary] = useState<{ lat: number; lng: number }[]>([]);
   const [published, setPublished] = useState(false);
+
 
   const errors = useMemo(() => {
     const e: Record<string, string> = {};
